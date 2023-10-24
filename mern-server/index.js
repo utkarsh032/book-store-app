@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 
 // mongodb configuration
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri =
   "mongodb+srv://mern-book-store:0jFqRRxNLRQnxZrH@cluster0.ycafdom.mongodb.net/?retryWrites=true&w=majority";
 
@@ -45,6 +45,29 @@ async function run() {
     app.get("/all-books", async (req, res) => {
       const books = bookCollections.find();
       const result = await books.toArray();
+      res.send(result);
+    });
+
+    // update a book data : patch or update method
+    app.patch("/book/:id", async (req, res) => {
+      const id = req.params.id;
+      const updateBookData = req.body;
+      const filter = { _id: new ObjectId(id) };
+
+      const updateDoc = {
+        $set: {
+          ...updateBookData,
+        },
+      };
+
+      const options = { upsert: true };
+
+      // update
+      const result = await bookCollections.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
       res.send(result);
     });
 
