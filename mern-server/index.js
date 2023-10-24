@@ -34,6 +34,13 @@ async function run() {
     // create a collection of documents
     const bookCollections = client.db("BookInventory").collection("books");
 
+    //  insert a book to the database
+    app.post("/upload-book", async (req, res) => {
+      const data = req.body;
+      const result = await bookCollections.insertOne(data);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
