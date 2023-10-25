@@ -2,3 +2,16 @@ https://goodreads.com/
 
 npm init
 npm install express cors mongodb nodemon
+
+client{
+
+npm create vite@latest mern-client -- --template react
+npm install -D tailwindcss postcss autoprefixer
+
+npm install react-router-dom localforage match-sorter sort-by
+
+npm install react-icons --save
+
+
+}
+
