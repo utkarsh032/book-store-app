@@ -1,4 +1,5 @@
 import Banner from "../components/Banner";
+import FavoriteBook from "./FavoriteBook";
 
 const Home = () => {
   return (
@@ -6,7 +7,7 @@ const Home = () => {
       <div className="h-screen">
         <Banner />
       </div>
-      <div className="h-screen  bg-red-300"></div>
+      <FavoriteBook />
     </div>
   );
 };
