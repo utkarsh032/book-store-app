@@ -7,6 +7,7 @@ import {
   HiTable,
   HiUser,
   HiViewBoards,
+  HiInbox,
 } from "react-icons/hi";
 import { BiBuoy } from "react-icons/bi";
 
@@ -29,10 +30,7 @@ const SideBar = () => {
           >
             <p>Upload</p>
           </Sidebar.Item>
-          <Sidebar.Item
-            href="/admin/dashboard/manage"
-            icon={HiOutlineCloudUpload}
-          >
+          <Sidebar.Item href="/admin/dashboard/manage" icon={HiInbox}>
             <p>Manage Books</p>
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiUser}>
