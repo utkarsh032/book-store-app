@@ -1,7 +1,6 @@
+import { useLoaderData, useParams } from "react-router-dom";
 import { Button, Label, Select, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
-
-import { useLoaderData, useParams } from "react-router-dom";
 
 const EditBooks = () => {
   const { id } = useParams();
@@ -60,12 +59,15 @@ const EditBooks = () => {
 
     fetch(`http://localhost:5000/book/${id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(updateBookObj),
     })
       .then((res) => res.json())
       .then((data) => {
-        alert("Book data is updated successfully!!!");
+        alert("Book is update successfully");
+        console.log(data);
       });
   };
 
