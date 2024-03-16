@@ -1,24 +1,34 @@
 import express from "express";
-const app = express();
-const port = process.env.PORT || 5000;
 import cors from "cors";
-import { MongoClient, ServerApiVersion, ObjectId } from "mongodb"
+import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
 import dotenv from "dotenv";
+import path from "path";
+
 dotenv.config();
 
+const app = express();
+const port = process.env.PORT || 5000;
 const uri = process.env.MONGODB_URI;
+const _dirname = path.resolve();
 
-// middleware
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Serve static files
+app.use(express.static(path.join(_dirname, "mern-client/dist")));
+
+// Routes
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// mongodb configuration
+// Serve index.html for all routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(_dirname, "mern-client/dist", "index.html"));
+});
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+// MongoDB configuration
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -29,27 +39,20 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
+    // Connect to MongoDB
     await client.connect();
 
-    // create a collection of documents
+    // Create a collection of documents
     const bookCollections = client.db("BookInventory").collection("books");
 
-    //  insert a book to the database
+    // Insert a book into the database
     app.post("/upload-book", async (req, res) => {
       const data = req.body;
       const result = await bookCollections.insertOne(data);
       res.send(result);
     });
 
-    // get all books from the database
-    // app.get("/all-books", async (req, res) => {
-    //   const books = bookCollections.find();
-    //   const result = await books.toArray();
-    //   res.send(result);
-    // });
-
-    // update a book data : patch or update method
+    // Update a book data
     app.patch("/book/:id", async (req, res) => {
       const id = req.params.id;
       const updateBookData = req.body;
@@ -63,16 +66,11 @@ async function run() {
 
       const options = { upsert: true };
 
-      // update
-      const result = await bookCollections.updateOne(
-        filter,
-        updateDoc,
-        options
-      );
+      const result = await bookCollections.updateOne(filter, updateDoc, options);
       res.send(result);
     });
 
-    // delete a book data
+    // Delete a book data
     app.delete("/book/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
@@ -80,7 +78,7 @@ async function run() {
       res.send(result);
     });
 
-    // find by category
+    // Find books by category
     app.get("/all-books", async (req, res) => {
       let query = {};
       if (req.query?.category) {
@@ -90,7 +88,7 @@ async function run() {
       res.send(result);
     });
 
-    // get a single book data
+    // Get a single book data
     app.get("/book/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
@@ -100,16 +98,18 @@ async function run() {
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } catch (error) {
+    console.error("An error occurred:", error);
   } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
+    // Close the client when finished
+    await client.close();
   }
 }
-run().catch(console.dir);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+// Run the server
+run().then(() => {
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+  });
+}).catch(console.error);

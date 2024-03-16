@@ -11,12 +11,11 @@ import {
 } from "react-icons/hi";
 import { BiBuoy } from "react-icons/bi";
 
-import userImg from "../assets/profile.jpg";
 
 const SideBar = () => {
   return (
     <Sidebar aria-label="Sidebar with content separator example">
-      <Sidebar.Logo href="#" img={userImg} imgAlt="Profile">
+      <Sidebar.Logo href="#" img="profile.jpg" imgAlt="Profile">
         <p>{name}</p>
       </Sidebar.Logo>
       <Sidebar.Items>

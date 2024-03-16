@@ -51,24 +51,22 @@ body {
   font-weight: bold;
   color: #fff;
 }
-
 .banner .swiper-slide:nth-child(1n) {
-  background-image: url("src/assets/banner-books/book1.png");
+  background-image: url("/book1.png");
 }
 
 .banner .swiper-slide:nth-child(2n) {
-  background-image: url("src/assets/banner-books/book2.png");
+  background-image: url("/book2.png");
 }
 
 .banner .swiper-slide:nth-child(3n) {
-  background-image: url("src/assets/banner-books/book3.png");
+  background-image: url("/book3.png");
 }
 
 .banner .swiper-slide:nth-child(4n) {
-  background-image: url("src/assets/banner-books/book4.png");
+  background-image: url("/book4.png");
 }
 
 .banner .swiper-slide:nth-child(5n) {
-  background-image: url("src/assets/banner-books/book5.png");
+  background-image: url("/book5.png");
 }
-

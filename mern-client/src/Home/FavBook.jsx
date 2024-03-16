@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import FavBookImg from "../assets/favoritebook.jpg";
 
 const FavBook = () => {
   return (
     <div className="px-4 lg:px-24 my-20 flex flex-col md:flex-row justify-between items-center gap-12">
       <div className="md:w-1/2">
-        <img src={FavBookImg} alt="" className="rounded md:w-10/12" />
+        <img src="favoritebook.jpg" alt="Favorite Book" className="rounded md:w-10/12 max-w-full" />
       </div>
 
       <div className="md:w-1/2 space-y-6">

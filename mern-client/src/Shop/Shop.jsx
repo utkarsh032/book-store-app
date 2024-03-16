@@ -3,11 +3,25 @@ import { Card } from "flowbite-react";
 
 const Shop = () => {
   const [books, setBooks] = useState([]);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     fetch("http://localhost:5000/all-books")
-      .then((res) => res.json())
-      .then((data) => setBooks(data));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch books");
+        }
+        return res.json();
+      })
+      .then((data) => setBooks(data))
+      .catch((error) => {
+        setError(error.message);
+      });
   }, []);
+
+  if (error) {
+    console.log(error)
+  }
 
   return (
     <div className="mt-28 px-4 lg:px-24">

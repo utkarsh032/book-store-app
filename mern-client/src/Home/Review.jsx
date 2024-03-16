@@ -10,7 +10,6 @@ import { Pagination } from "swiper/modules";
 
 import { FaStar } from "react-icons/fa6";
 import { Avatar } from "flowbite-react";
-import proPic from "../assets/profile.jpg";
 
 const Review = () => {
   return (
@@ -62,8 +61,8 @@ const Review = () => {
                   into electronic typesetting, remaining essentially unchanged.
                 </p>
                 <Avatar
-                  alt="proPic"
-                  img={proPic}
+                  alt="profile.jpg"
+                  src="profile.jpg"
                   rounded
                   className="w-10 mb-4"
                 />
@@ -92,8 +91,8 @@ const Review = () => {
                   into electronic typesetting, remaining essentially unchanged.
                 </p>
                 <Avatar
-                  alt="proPic"
-                  img={proPic}
+                  alt="profile.jpg"
+                  src="profile.jpg"
                   rounded
                   className="w-10 mb-4"
                 />
@@ -122,8 +121,8 @@ const Review = () => {
                   into electronic typesetting, remaining essentially unchanged.
                 </p>
                 <Avatar
-                  alt="proPic"
-                  img={proPic}
+                  alt="profile.jpg"
+                  src="profile.jpg"
                   rounded
                   className="w-10 mb-4"
                 />
@@ -152,8 +151,8 @@ const Review = () => {
                   into electronic typesetting, remaining essentially unchanged.
                 </p>
                 <Avatar
-                  alt="proPic"
-                  img={proPic}
+                  alt="profile.jpg"
+                  src="profile.jpg"
                   rounded
                   className="w-10 mb-4"
                 />
@@ -182,8 +181,8 @@ const Review = () => {
                   into electronic typesetting, remaining essentially unchanged.
                 </p>
                 <Avatar
-                  alt="proPic"
-                  img={proPic}
+                  alt="profile.jpg"
+                  src="profile.jpg"
                   rounded
                   className="w-10 mb-4"
                 />
@@ -199,5 +198,3 @@ const Review = () => {
 };
 
 export default Review;
-
-// 3:26

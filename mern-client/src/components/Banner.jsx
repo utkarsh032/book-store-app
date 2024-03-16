@@ -32,7 +32,7 @@ const Banner = () => {
         <div>
           <BannerCard />
         </div>
-        
+
       </div>
     </div>
   );

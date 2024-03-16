@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import bookPic from "../assets/awardbooks.png";
 
 const PromoBanner = () => {
   return (
@@ -20,7 +19,7 @@ const PromoBanner = () => {
         </div>
 
         <div>
-          <img src={bookPic} alt="" className="w-96" />
+          <img src="awardbooks.png" alt="" className="w-96" />
         </div>
       </div>
     </div>
