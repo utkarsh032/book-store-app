@@ -1,7 +1,12 @@
-const express = require("express");
+import express from "express";
 const app = express();
 const port = process.env.PORT || 5000;
-const cors = require("cors");
+import cors from "cors";
+import { MongoClient, ServerApiVersion, ObjectId } from "mongodb"
+import dotenv from "dotenv";
+dotenv.config();
+
+const uri = process.env.MONGODB_URI;
 
 // middleware
 app.use(cors());
@@ -12,10 +17,6 @@ app.get("/", (req, res) => {
 });
 
 // mongodb configuration
-
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const uri =
-  "mongodb+srv://mern-book-store:0jFqRRxNLRQnxZrH@cluster0.ycafdom.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {

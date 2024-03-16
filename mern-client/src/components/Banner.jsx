@@ -28,9 +28,11 @@ const Banner = () => {
             </button>
           </div>
         </div>
+
         <div>
           <BannerCard />
         </div>
+        
       </div>
     </div>
   );
